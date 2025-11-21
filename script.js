@@ -7,8 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
       price: "Rp 185.000",
       priceValue: 185000,
       category: "Dekorasi Rumah",
-      image:
-        "img/vas-bambu.jpg",
+      image: "img/vas-bambu.jpg",
       description: "Vas elegan dari anyaman bambu dengan desain tradisional.",
       rating: "4.8 (62)",
       artisan: "Sari Handmade",
@@ -19,8 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
       price: "Rp 75.000",
       priceValue: 75000,
       category: "Aksesoris",
-      image:
-        "img/gelang-tenun.png",
+      image: "img/gelang-tenun.png",
       description: "Gelang tangan dengan motif tenun khas Sumba, NTT.",
       rating: "4.9 (45)",
       artisan: "Tenun Nusantara",
@@ -31,8 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
       price: "Rp 250.000",
       priceValue: 250000,
       category: "Fashion",
-      image:
-        "img/tas-rajut-bali.jpg",
+      image: "img/tas-rajut-bali.jpg",
       description: "Tas cantik dengan teknik rajut tradisional dari Bali.",
       rating: "4.7 (38)",
       artisan: "Bali Craft Collective",
@@ -43,8 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       price: "Rp 1.250.000",
       priceValue: 1250000,
       category: "Karya Seni",
-      image:
-        "img/lukisan-batik.jpg",
+      image: "img/lukisan-batik.jpg",
       description: "Karya seni batik dengan sentuhan modern dan tradisional.",
       rating: "5.0 (15)",
       artisan: "Bali Craft Collective",
@@ -752,4 +748,3 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
-
