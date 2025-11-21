@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
       priceValue: 185000,
       category: "Dekorasi Rumah",
       image:
-        "https://images.unsplash.com/photo-1608506375591-b91b98fe3189?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        "img/vas-bambu.jpg",
       description: "Vas elegan dari anyaman bambu dengan desain tradisional.",
       rating: "4.8 (62)",
       artisan: "Sari Handmade",
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       priceValue: 75000,
       category: "Aksesoris",
       image:
-        "https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        "img/gelang-tenun.png",
       description: "Gelang tangan dengan motif tenun khas Sumba, NTT.",
       rating: "4.9 (45)",
       artisan: "Tenun Nusantara",
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
       priceValue: 250000,
       category: "Fashion",
       image:
-        "https://images.unsplash.com/photo-1556306535-38febf6782e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+        "img/tas-rajut-bali.jpg",
       description: "Tas cantik dengan teknik rajut tradisional dari Bali.",
       rating: "4.7 (38)",
       artisan: "Bali Craft Collective",
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
       priceValue: 1250000,
       category: "Karya Seni",
       image:
-        "https://images.unsplash.com/photo-1580375606317-2bb6a56b1c48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+        "img/lukisan-batik.jpg",
       description: "Karya seni batik dengan sentuhan modern dan tradisional.",
       rating: "5.0 (15)",
       artisan: "Bali Craft Collective",
@@ -752,3 +752,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
