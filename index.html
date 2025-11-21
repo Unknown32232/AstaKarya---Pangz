@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AstaKarya - E-Commerce Produk Handmade Indonesia</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="loginScreen" class="login-container">
+      <div class="card login-card">
+        <div class="card-body">
+          <div class="text-center mb-4">
+            <h2><i class="bi bi-brush-fill"></i> AstaKarya</h2>
+            <p class="text-muted">Silakan login untuk melanjutkan</p>
+          </div>
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                placeholder="Masukkan username"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Masukkan password"
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              <i class="bi bi-box-arrow-in-right"></i> Login
+            </button>
+          </form>
+          <div class="mt-3">
+            <small class="text-muted">
+              <strong>Demo Accounts:</strong><br />
+              User: user / user<br />
+              Admin: admin / admin
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="mainApp" style="display: none">
+      <div class="view-switcher">
+        <button class="btn btn-secondary" id="viewSwitcher">
+          <i class="bi bi-person-gear"></i> Switch to Admin View
+        </button>
+      </div>
+
+      <div id="userView">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <div class="container">
+            <a class="navbar-brand" href="#">
+              <i class="bi bi-brush-fill"></i> AstaKarya
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Beranda</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#kategori">Kategori</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#pengrajin">Pengrajin</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Tentang Kami</a>
+                </li>
+              </ul>
+              <form class="d-flex me-2">
+                <input
+                  class="form-control me-2"
+                  type="search"
+                  placeholder="Cari produk handmade..."
+                />
+                <button class="btn btn-outline-light" type="submit">
+                  <i class="bi bi-search"></i>
+                </button>
+              </form>
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link nav-icon" href="#wishlist">
+                    <i class="bi bi-heart"></i>
+                    <span class="nav-icon-text">Wishlist</span>
+                    <span class="wishlist-badge" id="wishlistCount">0</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-icon" href="#cart">
+                    <i class="bi bi-cart3"></i>
+                    <span class="nav-icon-text">Keranjang</span>
+                    <span class="cart-badge" id="cartCount">0</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <div class="nav-link ser-info">
+                    <span id="currentUser">User</span>
+                    <button class="logout-btn" id="logoutBtn" title="Logout">
+                      <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="hero-section">
+          <div class="container text-center">
+            <h1 class="display-4 fw-bold">
+              Temukan Keindahan Kerajinan Tangan Indonesia
+            </h1>
+            <p class="lead">
+              Dukung pengrajin lokal dan miliki produk unik dengan cerita
+            </p>
+            <button class="btn btn-primary btn-lg">Jelajahi Sekarang</button>
+          </div>
+        </div>
+
+        <div class="container">
+          <h2 class="mb-4" id="kategori">Kategori Populer</h2>
+          <div class="row mb-5">
+            <div class="col-md-3 mb-3">
+              <div class="card text-center">
+                <img
+                  src="https://images.unsplash.com/photo-1590666044896-aae22d71cd3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  class="card-img-top"
+                  alt="Dekorasi Rumah"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Dekorasi Rumah</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="card text-center">
+                <img
+                  src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  class="card-img-top"
+                  alt="Aksesoris"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Aksesoris</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="card text-center">
+                <img
+                  src="https://images.unsplash.com/photo-1556306535-38febf6782e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                  class="card-img-top"
+                  alt="Fashion"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Fashion</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <div class="card text-center">
+                <img
+                  src="https://images.unsplash.com/photo-1580375606317-2bb6a56b1c48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                  class="card-img-top"
+                  alt="Seni"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Karya Seni</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="mb-4">Produk Unggulan</h2>
+          <div class="row mb-5" id="featuredProducts"></div>
+
+          <h2 class="mb-4" id="gallery">Galeri Produk</h2>
+          <div class="row mb-5">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-3 text-center">
+                      <img
+                        src="https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                        class="img-fluid rounded mb-3"
+                        alt="Product 1"
+                      />
+                      <h6>Keramik Handmade</h6>
+                    </div>
+                    <div class="col-md-3 text-center">
+                      <img
+                        src="https://images.unsplash.com/photo-1618662160215-4615ac6dcd7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="img-fluid rounded mb-3"
+                        alt="Product 2"
+                      />
+                      <h6>Tenun Ikat Flores</h6>
+                    </div>
+                    <div class="col-md-3 text-center">
+                      <img
+                        src="https://images.unsplash.com/photo-1619100683552-658a7f2c72d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80"
+                        class="img-fluid rounded mb-3"
+                        alt="Product 3"
+                      />
+                      <h6>Perak Bali Ukir</h6>
+                    </div>
+                    <div class="col-md-3 text-center">
+                      <img
+                        src="https://images.unsplash.com/photo-1623947448234-3c19c5c3291c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                        class="img-fluid rounded mb-3"
+                        alt="Product 4"
+                      />
+                      <h6>Wayang Kulit</h6>
+                    </div>
+                  </div>
+                  <div class="text-center mt-3">
+                    <button class="btn btn-outline-primary">
+                      Lihat Lebih Banyak
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="mb-4" id="pengrajin">Pengrajin Terpilih</h2>
+          <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+              <div class="card artisan-card">
+                <div class="card-body text-center">
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80"
+                    class="rounded-circle mb-3"
+                    alt="Pengrajin"
+                    width="100"
+                    height="100"
+                  />
+                  <h5 class="card-title">Sari Handmade</h5>
+                  <p class="card-text">
+                    Spesialis kerajinan anyaman bambu dari Yogyakarta dengan
+                    pengalaman lebih dari 10 tahun.
+                  </p>
+                  <div class="d-flex justify-content-center">
+                    <div class="me-3">
+                      <div class="fw-bold">24</div>
+                      <small>Produk</small>
+                    </div>
+                    <div class="me-3">
+                      <div class="fw-bold">142</div>
+                      <small>Penjualan</small>
+                    </div>
+                    <div>
+                      <div class="fw-bold">4.8</div>
+                      <small>Rating</small>
+                    </div>
+                  </div>
+                  <a href="#" class="btn btn-outline-primary mt-3"
+                    >Lihat Profil & Produk</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card artisan-card">
+                <div class="card-body text-center">
+                  <img
+                    src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                    class="rounded-circle mb-3"
+                    alt="Pengrajin"
+                    width="100"
+                    height="100"
+                  />
+                  <h5 class="card-title">Bali Craft Collective</h5>
+                  <p class="card-text">
+                    Komunitas pengrajin Bali yang memproduksi berbagai kerajinan
+                    tradisional dengan kualitas terbaik.
+                  </p>
+                  <div class="d-flex justify-content-center">
+                    <div class="me-3">
+                      <div class="fw-bold">42</div>
+                      <small>Produk</small>
+                    </div>
+                    <div class="me-3">
+                      <div class="fw-bold">287</div>
+                      <small>Penjualan</small>
+                    </div>
+                    <div>
+                      <div class="fw-bold">4.9</div>
+                      <small>Rating</small>
+                    </div>
+                  </div>
+                  <a href="#" class="btn btn-outline-primary mt-3"
+                    >Lihat Profil & Produk</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="card artisan-card">
+                <div class="card-body text-center">
+                  <img
+                    src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+                    class="rounded-circle mb-3"
+                    alt="Pengrajin"
+                    width="100"
+                    height="100"
+                  />
+                  <h5 class="card-title">Tenun Nusantara</h5>
+                  <p class="card-text">
+                    Spesialis tenun tradisional dari berbagai daerah di
+                    Indonesia dengan motif yang autentik.
+                  </p>
+                  <div class="d-flex justify-content-center">
+                    <div class="me-3">
+                      <div class="fw-bold">18</div>
+                      <small>Produk</small>
+                    </div>
+                    <div class="me-3">
+                      <div class="fw-bold">94</div>
+                      <small>Penjualan</small>
+                    </div>
+                    <div>
+                      <div class="fw-bold">4.7</div>
+                      <small>Rating</small>
+                    </div>
+                  </div>
+                  <a href="#" class="btn btn-outline-primary mt-3"
+                    >Lihat Profil & Produk</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="mb-4" id="wishlist">Wishlist Saya</h2>
+          <div class="row mb-5">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div id="wishlistContent">
+                    <div class="empty-wishlist">
+                      <i class="bi bi-heart"></i>
+                      <h5>Wishlist Kamu Masih Kosong</h5>
+                      <p>
+                        Tambahkan produk favorit kamu ke wishlist dengan menekan
+                        tombol hati di produk
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="mb-4" id="cart">Keranjang Belanja</h2>
+          <div class="row mb-5">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div id="cartContent">
+                    <div class="empty-cart">
+                      <i class="bi bi-cart"></i>
+                      <h5>Keranjang Belanja Kamu Masih Kosong</h5>
+                      <p>
+                        Tambahkan produk ke keranjang dengan menekan tombol
+                        "Tambah ke Keranjang"
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="checkoutSection" style="display: none">
+            <h2 class="mb-4">Checkout</h2>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <h5 class="card-title">Pilih Metode Pembayaran</h5>
+                    <div class="payment-option" data-method="transfer">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-bank fs-3 text-primary me-3"></i>
+                        <div>
+                          <div class="fw-bold">Transfer Bank</div>
+                          <small class="text-muted"
+                            >Bayar melalui transfer bank (BCA, Mandiri,
+                            BNI)</small
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="payment-option" data-method="emoney">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-phone fs-3 text-success me-3"></i>
+                        <div>
+                          <div class="fw-bold">E-Money</div>
+                          <small class="text-muted"
+                            >Bayar melalui e-wallet (Gopay, OVO, Dana)</small
+                          >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="order-summary">
+                  <h5 class="mb-3">Ringkasan Pesanan</h5>
+                  <div id="orderSummary"></div>
+                  <button class="btn btn-primary w-100 mt-3" id="payButton">
+                    <i class="bi bi-credit-card"></i> Bayar Sekarang
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="successModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                  <div class="success-animation">
+                    <i
+                      class="bi bi-check-circle-fill text-success"
+                      style="font-size: 4rem"
+                    ></i>
+                  </div>
+                  <h3 class="mt-3">Pembayaran Berhasil!</h3>
+                  <p class="text-muted">
+                    Terima kasih telah berbelanja di AstaKarya. Pesanan Anda
+                    sedang diproses.
+                  </p>
+                  <button class="btn btn-primary mt-3" data-bs-dismiss="modal">
+                    Kembali Berbelanja
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="bg-dark text-light py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <h5>AstaKarya</h5>
+                <p>
+                  Platform e-commerce khusus untuk produk handmade Indonesia.
+                  Memberdayakan pengrajin lokal dan melestarikan warisan budaya.
+                </p>
+              </div>
+              <div class="col-md-2">
+                <h5>Tautan</h5>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="text-light">Tentang Kami</a></li>
+                  <li><a href="#" class="text-light">Kebijakan Privasi</a></li>
+                  <li><a href="#" class="text-light">Syarat & Ketentuan</a></li>
+                  <li><a href="#" class="text-light">Bantuan</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h5>Kategori</h5>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="text-light">Dekorasi Rumah</a></li>
+                  <li><a href="#" class="text-light">Aksesoris</a></li>
+                  <li><a href="#" class="text-light">Fashion</a></li>
+                  <li><a href="#" class="text-light">Karya Seni</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h5>Hubungi Kami</h5>
+                <address>
+                  <i class="bi bi-envelope"></i> info@AstaKarya.com<br />
+                  <i class="bi bi-telephone"></i> +62 21 1234 5678<br />
+                  <i class="bi bi-geo-alt"></i> Jakarta, Indonesia
+                </address>
+              </div>
+            </div>
+            <hr />
+            <div class="text-center">
+              <p>&copy; 2023 AstaKarya - All rights reserved</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+      <div id="adminView" class="admin-panel">
+        <div class="sidebar">
+          <div class="text-center mb-4">
+            <h4><i class="bi bi-brush-fill"></i> AstaKarya</h4>
+            <p class="text-muted">Admin Panel</p>
+          </div>
+          <a href="#" class="active"
+            ><i class="bi bi-speedometer2"></i> Dashboard</a
+          >
+          <a href="#artisan-management"
+            ><i class="bi bi-people"></i> Manajemen Artisan</a
+          >
+          <a href="#product-verification"
+            ><i class="bi bi-box-seam"></i> Verifikasi Produk</a
+          >
+          <a href="#category-management"
+            ><i class="bi bi-tags"></i> Manajemen Kategori</a
+          >
+          <a href="#sales-reports"
+            ><i class="bi bi-bar-chart"></i> Laporan Penjualan</a
+          >
+          <a href="#"><i class="bi bi-images"></i> Konten</a>
+          <a href="#"><i class="bi bi-gear"></i> Pengaturan</a>
+          <a href="#" id="backToUserView"
+            ><i class="bi bi-arrow-left-circle"></i> Kembali ke Tampilan User</a
+          >
+        </div>
+
+        <div class="admin-content">
+          <h2 class="mb-4">Dashboard Administrator</h2>
+
+          <div class="row">
+            <div class="col-md-3">
+              <div class="stats-card">
+                <i class="bi bi-currency-dollar fs-1 text-primary"></i>
+                <div class="stats-number">Rp 12.5JT</div>
+                <div class="stats-label">Pendapatan Bulan Ini</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="stats-card">
+                <i class="bi bi-cart-check fs-1 text-primary"></i>
+                <div class="stats-number">142</div>
+                <div class="stats-label">Pesanan Bulan Ini</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="stats-card">
+                <i class="bi bi-people fs-1 text-primary"></i>
+                <div class="stats-number">24</div>
+                <div class="stats-label">Artisan Terdaftar</div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="stats-card">
+                <i class="bi bi-box-seam fs-1 text-primary"></i>
+                <div class="stats-number">87</div>
+                <div class="stats-label">Produk Terverifikasi</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Statistik Penjualan</h5>
+                  <div class="chart-container">
+                    <canvas id="salesChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Kategori Terpopuler</h5>
+                  <div class="chart-container">
+                    <canvas id="categoryChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="mb-4 mt-5" id="artisan-management">Manajemen Artisan</h3>
+          <div class="card mb-5">
+            <div class="card-body">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h5 class="card-title mb-0">Daftar Pengrajin</h5>
+                <button class="btn btn-primary" id="addArtisanBtn" disabled>
+                  <i class="bi bi-plus-circle"></i> Tambah Artisan
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Nama</th>
+                      <th>Lokasi</th>
+                      <th>Spesialisasi</th>
+                      <th>Produk</th>
+                      <th>Status</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <img
+                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=688&q=80"
+                            class="rounded-circle me-2"
+                            width="32"
+                            height="32"
+                          />
+                          <div>Sari Handmade</div>
+                        </div>
+                      </td>
+                      <td>Yogyakarta</td>
+                      <td>Anyaman Bambu</td>
+                      <td>24</td>
+                      <td><span class="badge bg-success">Aktif</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" disabled>
+                          Edit
+                        </button>
+                        <button
+                          class="btn btn-sm btn-outline-danger toggle-artisan"
+                          data-artisan-id="1"
+                          data-action="deactivate"
+                        >
+                          Nonaktifkan
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <img
+                            src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                            class="rounded-circle me-2"
+                            width="32"
+                            height="32"
+                          />
+                          <div>Bali Craft Collective</div>
+                        </div>
+                      </td>
+                      <td>Bali</td>
+                      <td>Beragam</td>
+                      <td>42</td>
+                      <td><span class="badge bg-success">Aktif</span></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" disabled>
+                          Edit
+                        </button>
+                        <button
+                          class="btn btn-sm btn-outline-danger toggle-artisan"
+                          data-artisan-id="2"
+                          data-action="deactivate"
+                        >
+                          Nonaktifkan
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <img
+                            src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80"
+                            class="rounded-circle me-2"
+                            width="32"
+                            height="32"
+                          />
+                          <div>Tenun Nusantara</div>
+                        </div>
+                      </td>
+                      <td>Flores</td>
+                      <td>Tenun</td>
+                      <td>18</td>
+                      <td>
+                        <span class="badge bg-warning text-dark">Pending</span>
+                      </td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-primary" disabled>
+                          Edit
+                        </button>
+                        <button
+                          class="btn btn-sm btn-outline-success toggle-artisan"
+                          data-artisan-id="3"
+                          data-action="activate"
+                        >
+                          Aktifkan
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="mb-4" id="product-verification">Verifikasi Produk</h3>
+          <div class="card mb-5">
+            <div class="card-body">
+              <ul class="nav nav-tabs" id="verificationTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link active"
+                    id="pending-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#pending"
+                    type="button"
+                    role="tab"
+                  >
+                    Menunggu Verifikasi <span class="badge bg-warning">5</span>
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="verified-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#verified"
+                    type="button"
+                    role="tab"
+                  >
+                    Terverifikasi <span class="badge bg-success">87</span>
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button
+                    class="nav-link"
+                    id="rejected-tab"
+                    data-bs-toggle="tab"
+                    data-bs-target="#rejected"
+                    type="button"
+                    role="tab"
+                  >
+                    Ditolak <span class="badge bg-danger">3</span>
+                  </button>
+                </li>
+              </ul>
+              <div class="tab-content mt-4" id="verificationTabContent">
+                <div
+                  class="tab-pane fade show active"
+                  id="pending"
+                  role="tabpanel"
+                >
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Produk</th>
+                          <th>Artisan</th>
+                          <th>Tanggal Daftar</th>
+                          <th>Kategori</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <img
+                                src="https://images.unsplash.com/photo-1572536147248-ac59a8abfa4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                                class="me-2"
+                                width="40"
+                                height="40"
+                                style="object-fit: cover"
+                              />
+                              <div>Keramik Handmade</div>
+                            </div>
+                          </td>
+                          <td>Sari Handmade</td>
+                          <td>12 Okt 2023</td>
+                          <td>Dekorasi Rumah</td>
+                          <td>
+                            <button class="btn btn-sm btn-success">
+                              Setujui
+                            </button>
+                            <button class="btn btn-sm btn-danger">Tolak</button>
+                            <button class="btn btn-sm btn-outline-primary">
+                              Detail
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <img
+                                src="https://images.unsplash.com/photo-1618662160215-4615ac6dcd7a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                                class="me-2"
+                                width="40"
+                                height="40"
+                                style="object-fit: cover"
+                              />
+                              <div>Tenun Ikat Flores</div>
+                            </div>
+                          </td>
+                          <td>Tenun Nusantara</td>
+                          <td>10 Okt 2023</td>
+                          <td>Fashion</td>
+                          <td>
+                            <button class="btn btn-sm btn-success">
+                              Setujui
+                            </button>
+                            <button class="btn btn-sm btn-danger">Tolak</button>
+                            <button class="btn btn-sm btn-outline-primary">
+                              Detail
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="verified" role="tabpanel">
+                  <div class="alert alert-success">
+                    <i class="bi bi-check-circle-fill"></i> Semua produk telah
+                    terverifikasi dengan baik.
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Produk</th>
+                          <th>Artisan</th>
+                          <th>Tanggal Verifikasi</th>
+                          <th>Harga</th>
+                          <th>Status</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <img
+                                src="https://images.unsplash.com/photo-1608506375591-b91b98fe3189?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                class="me-2"
+                                width="40"
+                                height="40"
+                                style="object-fit: cover"
+                              />
+                              <div>Vas Bambu Handmade</div>
+                            </div>
+                          </td>
+                          <td>Sari Handmade</td>
+                          <td>5 Okt 2023</td>
+                          <td>Rp 185.000</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <img
+                                src="https://images.unsplash.com/photo-1618519764620-7403abdbdfe9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+                                class="me-2"
+                                width="40"
+                                height="40"
+                                style="object-fit: cover"
+                              />
+                              <div>Gelang Tenun Sumba</div>
+                            </div>
+                          </td>
+                          <td>Tenun Nusantara</td>
+                          <td>3 Okt 2023</td>
+                          <td>Rp 75.000</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="rejected" role="tabpanel">
+                  <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill"></i> Produk yang ditolak
+                    akan dikembalikan ke artisan untuk diperbaiki.
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Produk</th>
+                          <th>Artisan</th>
+                          <th>Tanggal Ditolak</th>
+                          <th>Alasan</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <img
+                                src="https://images.unsplash.com/photo-1623947448234-3c19c5c3291c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                                class="me-2"
+                                width="40"
+                                height="40"
+                                style="object-fit: cover"
+                              />
+                              <div>Wayang Kulit</div>
+                            </div>
+                          </td>
+                          <td>Bali Craft Collective</td>
+                          <td>8 Okt 2023</td>
+                          <td>Kualitas gambar tidak memenuhi standar</td>
+                          <td>
+                            <button class="btn btn-sm btn-outline-primary">
+                              Tinjau Ulang
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="mb-4" id="category-management">Manajemen Kategori</h3>
+          <div class="row mb-5">
+            <div class="col-md-5">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Tambah Kategori Baru</h5>
+                  <form>
+                    <div class="mb-3">
+                      <label for="categoryName" class="form-label"
+                        >Nama Kategori</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="categoryName"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="categoryDescription" class="form-label"
+                        >Deskripsi</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="categoryDescription"
+                        rows="3"
+                      ></textarea>
+                    </div>
+                    <div class="mb-3">
+                      <label for="categoryImage" class="form-label"
+                        >Gambar Kategori</label
+                      >
+                      <input
+                        class="form-control"
+                        type="file"
+                        id="categoryImage"
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                      Simpan Kategori
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Daftar Kategori</h5>
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>Nama</th>
+                          <th>Jumlah Produk</th>
+                          <th>Status</th>
+                          <th>Aksi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Dekorasi Rumah</td>
+                          <td>24</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                          <td>
+                            <button class="btn btn-sm btn-outline-primary">
+                              Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                              Nonaktifkan
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Aksesoris</td>
+                          <td>18</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                          <td>
+                            <button class="btn btn-sm btn-outline-primary">
+                              Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                              Nonaktifkan
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Fashion</td>
+                          <td>32</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                          <td>
+                            <button class="btn btn-sm btn-outline-primary">
+                              Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                              Nonaktifkan
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Karya Seni</td>
+                          <td>13</td>
+                          <td><span class="badge bg-success">Aktif</span></td>
+                          <td>
+                            <button class="btn btn-sm btn-outline-primary">
+                              Edit
+                            </button>
+                            <button class="btn btn-sm btn-outline-danger">
+                              Nonaktifkan
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="mb-4" id="sales-reports">Laporan Penjualan</h3>
+          <div class="card mb-5">
+            <div class="card-body">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h5 class="card-title mb-0">Data Penjualan</h5>
+                <div>
+                  <button class="btn btn-outline-primary">
+                    <i class="bi bi-download"></i> Export Laporan
+                  </button>
+                </div>
+              </div>
+              <div class="row mb-4">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="dateFrom" class="form-label"
+                      >Dari Tanggal</label
+                    >
+                    <input type="date" class="form-control" id="dateFrom" />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="dateTo" class="form-label"
+                      >Sampai Tanggal</label
+                    >
+                    <input type="date" class="form-control" id="dateTo" />
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="categoryFilter" class="form-label"
+                      >Kategori</label
+                    >
+                    <select class="form-select" id="categoryFilter">
+                      <option selected>Semua Kategori</option>
+                      <option>Dekorasi Rumah</option>
+                      <option>Aksesoris</option>
+                      <option>Fashion</option>
+                      <option>Karya Seni</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">&nbsp;</label>
+                  <button class="btn btn-primary w-100">Filter</button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>ID Pesanan</th>
+                      <th>Produk</th>
+                      <th>Pembeli</th>
+                      <th>Tanggal</th>
+                      <th>Jumlah</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>#ORD-2023-001</td>
+                      <td>Vas Bambu Handmade</td>
+                      <td>Budi Santoso</td>
+                      <td>12 Okt 2023</td>
+                      <td>Rp 185.000</td>
+                      <td><span class="badge bg-success">Selesai</span></td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-2023-002</td>
+                      <td>Gelang Tenun Sumba</td>
+                      <td>Dewi Lestari</td>
+                      <td>11 Okt 2023</td>
+                      <td>Rp 75.000</td>
+                      <td><span class="badge bg-success">Selesai</span></td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-2023-003</td>
+                      <td>Tas Rajut Bali</td>
+                      <td>Anton Wijaya</td>
+                      <td>10 Okt 2023</td>
+                      <td>Rp 250.000</td>
+                      <td>
+                        <span class="badge bg-warning text-dark">Proses</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>#ORD-2023-004</td>
+                      <td>Lukisan Batik Kontemporer</td>
+                      <td>Citra Dewi</td>
+                      <td>9 Okt 2023</td>
+                      <td>Rp 1.250.000</td>
+                      <td><span class="badge bg-info">Pengiriman</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#">Previous</a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
