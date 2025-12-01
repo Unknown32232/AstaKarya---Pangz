@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manajemen Data - Admin AstaKarya</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <style>
+      /* Global Tweak */
+      body {
+        font-size: 0.9rem;
+        background-color: #f8f9fa;
+        overflow-x: hidden;
+      }
+
+      /* Sidebar Sticky */
+      .sidebar {
+        width: 260px;
+        height: 100vh;
+        background-color: #0f172a;
+        color: white;
+        position: sticky;
+        top: 0;
+        flex-shrink: 0;
+        overflow-y: auto;
+        z-index: 1020;
+      }
+      .sidebar a {
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: none;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        display: block;
+      }
+      .sidebar a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+      .sidebar .nav-link.active {
+        background-color: #0d6efd;
+        color: white !important;
+        font-weight: 600;
+      }
+
+      /* Judul Section */
+      .section-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #334155;
+        margin: 0; /* Margin diatur di wrapper */
+        padding-left: 10px;
+        border-left: 5px solid #0d6efd;
+      }
+
+      /* Tabel & Gambar */
+      .table th {
+        background-color: #f1f5f9;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+      }
+      .table td {
+        vertical-align: middle;
+      }
+      .table-img {
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      /* PENTING: Fix Gambar Produk agar tidak meledak */
+      table img.product-thumb,
+      table img {
+        width: 45px !important;
+        height: 45px !important;
+        object-fit: cover !important;
+        border-radius: 4px !important;
+      }
+
+      /* Card Custom */
+      .card {
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+      }
+
+      /* Form Labels */
+      .form-label {
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: #475569;
+        margin-bottom: 0.3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="d-flex">
+      <div class="sidebar d-flex flex-column p-3">
+        <a
+          href="#"
+          class="d-flex align-items-center mb-4 text-white text-decoration-none border-bottom pb-3 border-secondary"
+        >
+          <span class="fs-4 fw-bold"
+            ><i class="bi bi-brush-fill"></i> Admin Panel</span
+          >
+        </a>
+
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li>
+            <a href="dashboard.html" class="nav-link text-white"
+              ><i class="bi bi-speedometer2 me-2"></i> Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="management.html" class="nav-link active"
+              ><i class="bi bi-folder2-open me-2"></i> Manajemen Data</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="nav-link text-white"
+              onclick="alert('Fitur Pengguna belum tersedia'); return false;"
+              ><i class="bi bi-people me-2"></i> Pengguna</a
+            >
+          </li>
+        </ul>
+
+        <div class="mt-auto pt-3 border-top border-secondary">
+          <div class="dropdown">
+            <a
+              href="#"
+              class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <i class="bi bi-person-circle me-2"></i> <strong>Admin</strong>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+              <li>
+                <button class="dropdown-item text-warning" id="resetBtn">
+                  <small
+                    ><i class="bi bi-arrow-counterclockwise"></i> Reset
+                    Data</small
+                  >
+                </button>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <button class="dropdown-item" id="logoutBtn">
+                  <small>Sign out</small>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-grow-1 p-4" style="min-width: 0">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="fw-bold text-dark m-0">Pusat Manajemen Data</h2>
+        </div>
+
+        <div
+          class="d-flex justify-content-between align-items-center mb-3 mt-4"
+        >
+          <h5 class="section-title">Daftar Pengrajin</h5>
+          <button class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-circle me-1"></i> Tambah Artisan
+          </button>
+        </div>
+        <div class="card mb-5">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-4">Nama</th>
+                    <th>Lokasi</th>
+                    <th>Spesialisasi</th>
+                    <th>Produk</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="ps-4">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="../assets/img/pfp.png"
+                          class="table-img me-2"
+                        />
+                        <span class="fw-bold">Unknown Man</span>
+                      </div>
+                    </td>
+                    <td>Yogyakarta</td>
+                    <td>Anyaman Bambu</td>
+                    <td>24</td>
+                    <td><span class="badge bg-success">Aktif</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary py-0 me-1">
+                        Edit
+                      </button>
+                      <button
+                        class="btn btn-sm btn-outline-danger py-0"
+                        onclick="toggleRowStatus(this)"
+                      >
+                        Nonaktifkan
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ps-4">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="../assets/img/pfp2.png"
+                          class="table-img me-2"
+                        />
+                        <span class="fw-bold">Bali Craft Collective</span>
+                      </div>
+                    </td>
+                    <td>Bali</td>
+                    <td>Beragam</td>
+                    <td>42</td>
+                    <td><span class="badge bg-success">Aktif</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary py-0 me-1">
+                        Edit
+                      </button>
+                      <button
+                        class="btn btn-sm btn-outline-danger py-0"
+                        onclick="toggleRowStatus(this)"
+                      >
+                        Nonaktifkan
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ps-4">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="../assets/img/pfp3.png"
+                          class="table-img me-2"
+                        />
+                        <span class="fw-bold">Pria Sigma</span>
+                      </div>
+                    </td>
+                    <td>Papua</td>
+                    <td>Tenun</td>
+                    <td>18</td>
+                    <td><span class="badge bg-success">Aktif</span></td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary py-0 me-1">
+                        Edit
+                      </button>
+                      <button
+                        class="btn btn-sm btn-outline-danger py-0"
+                        onclick="toggleRowStatus(this)"
+                      >
+                        Nonaktifkan
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="section-title mt-4 mb-3">Daftar Produk Utama</h5>
+        <div class="card mb-5">
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th class="ps-4">Produk</th>
+                    <th>Kategori</th>
+                    <th>Harga</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="productTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="section-title mt-4 mb-3">Verifikasi Produk</h5>
+        <div class="card mb-5">
+          <div class="card-header bg-white pt-3">
+            <ul
+              class="nav nav-tabs card-header-tabs"
+              id="verifikasiTabs"
+              role="tablist"
+            >
+              <li class="nav-item">
+                <button
+                  class="nav-link active fw-bold text-dark"
+                  data-bs-toggle="tab"
+                  data-bs-target="#pending"
+                >
+                  Menunggu
+                  <span class="badge bg-warning text-dark ms-1">2</span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  class="nav-link text-muted"
+                  data-bs-toggle="tab"
+                  data-bs-target="#verified"
+                >
+                  Terverifikasi <span class="badge bg-success ms-1">87</span>
+                </button>
+              </li>
+              <li class="nav-item">
+                <button
+                  class="nav-link text-muted"
+                  data-bs-toggle="tab"
+                  data-bs-target="#rejected"
+                >
+                  Ditolak <span class="badge bg-danger ms-1">3</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body p-0">
+            <div class="tab-content">
+              <div class="tab-pane fade show active" id="pending">
+                <table class="table align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th class="ps-4">Produk</th>
+                      <th>Artisan</th>
+                      <th>Tgl Daftar</th>
+                      <th>Kategori</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr id="verify-row-1">
+                      <td class="ps-4">
+                        <div class="d-flex align-items-center">
+                          <img
+                            src="../assets/img/keramik.png"
+                            class="product-thumb me-2"
+                          />
+                          <span>Keramik Handmade</span>
+                        </div>
+                      </td>
+                      <td>Unknown Man</td>
+                      <td>12 Okt 2023</td>
+                      <td>Dekorasi</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-success py-0 me-1"
+                          onclick="verifyProduct('verify-row-1', 'approve')"
+                        >
+                          Setujui
+                        </button>
+                        <button
+                          class="btn btn-sm btn-danger py-0"
+                          onclick="verifyProduct('verify-row-1', 'reject')"
+                        >
+                          Tolak
+                        </button>
+                      </td>
+                    </tr>
+                    <tr id="verify-row-2">
+                      <td class="ps-4">
+                        <div class="d-flex align-items-center">
+                          <img
+                            src="../assets/img/tenun.jpeg"
+                            class="product-thumb me-2"
+                          />
+                          <span>Tenun Ikat</span>
+                        </div>
+                      </td>
+                      <td>Tenun Nusantara</td>
+                      <td>10 Okt 2023</td>
+                      <td>Fashion</td>
+                      <td>
+                        <button
+                          class="btn btn-sm btn-success py-0 me-1"
+                          onclick="verifyProduct('verify-row-2', 'approve')"
+                        >
+                          Setujui
+                        </button>
+                        <button
+                          class="btn btn-sm btn-danger py-0"
+                          onclick="verifyProduct('verify-row-2', 'reject')"
+                        >
+                          Tolak
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="tab-pane fade" id="verified">
+                <div class="alert alert-success m-3">Semua produk aman.</div>
+              </div>
+              <div class="tab-pane fade" id="rejected">
+                <div class="alert alert-info m-3">
+                  Produk ditolak dikembalikan ke artisan.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="section-title mt-4 mb-3">Manajemen Kategori</h5>
+        <div class="row mb-5">
+          <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card h-100">
+              <div class="card-body">
+                <h6 class="fw-bold mb-3">Tambah Kategori Baru</h6>
+                <form onsubmit="event.preventDefault(); alert('Dummy Action');">
+                  <div class="mb-3">
+                    <label class="form-label">Nama Kategori</label>
+                    <input type="text" class="form-control" placeholder="" />
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Deskripsi</label>
+                    <textarea class="form-control" rows="4"></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">Gambar Kategori</label>
+                    <div class="input-group">
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="inputGroupFile02"
+                      />
+                    </div>
+                  </div>
+                  <button class="btn btn-dark w-100 mt-2">
+                    Simpan Kategori
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-8">
+            <div class="card h-100">
+              <div class="card-header bg-white py-3">
+                <h6 class="m-0 fw-bold">Daftar Kategori</h6>
+              </div>
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle mb-0">
+                    <thead>
+                      <tr>
+                        <th class="ps-4">Nama</th>
+                        <th>Jumlah Produk</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="ps-4">Dekorasi Rumah</td>
+                        <td>24</td>
+                        <td><span class="badge bg-success">Aktif</span></td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-primary py-0 me-1"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            class="btn btn-sm btn-outline-danger py-0 toggle-btn"
+                            onclick="toggleCategoryStatus(this)"
+                          >
+                            Nonaktifkan
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="ps-4">Aksesoris</td>
+                        <td>18</td>
+                        <td><span class="badge bg-success">Aktif</span></td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-primary py-0 me-1"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            class="btn btn-sm btn-outline-danger py-0 toggle-btn"
+                            onclick="toggleCategoryStatus(this)"
+                          >
+                            Nonaktifkan
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="ps-4">Fashion</td>
+                        <td>32</td>
+                        <td><span class="badge bg-success">Aktif</span></td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-primary py-0 me-1"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            class="btn btn-sm btn-outline-danger py-0 toggle-btn"
+                            onclick="toggleCategoryStatus(this)"
+                          >
+                            Nonaktifkan
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="ps-4">Karya Seni</td>
+                        <td>13</td>
+                        <td><span class="badge bg-success">Aktif</span></td>
+                        <td>
+                          <button
+                            class="btn btn-sm btn-outline-primary py-0 me-1"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            class="btn btn-sm btn-outline-danger py-0 toggle-btn"
+                            onclick="toggleCategoryStatus(this)"
+                          >
+                            Nonaktifkan
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h5 class="section-title mt-4 mb-3">Laporan Penjualan</h5>
+        <div class="card mb-5">
+          <div
+            class="card-header bg-white py-3 d-flex justify-content-between align-items-center"
+          >
+            <h6 class="m-0 fw-bold">Data Penjualan</h6>
+            <button
+              class="btn btn-sm btn-outline-primary"
+              onclick="alert('Exporting...')"
+            >
+              <i class="bi bi-download"></i> Export Laporan
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="row g-3 mb-4">
+              <div class="col-md-3">
+                <label class="form-label">Dari Tanggal</label>
+                <input type="date" class="form-control" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label">Sampai Tanggal</label>
+                <input type="date" class="form-control" />
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Kategori</label>
+                <select class="form-select">
+                  <option selected>Semua Kategori</option>
+                  <option>Dekorasi Rumah</option>
+                  <option>Fashion</option>
+                </select>
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-dark w-100">Filter</button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-striped align-middle mb-0">
+                <thead class="bg-light">
+                  <tr>
+                    <th class="ps-4">ID Pesanan</th>
+                    <th>Produk</th>
+                    <th>Pembeli</th>
+                    <th>Tanggal</th>
+                    <th>Jumlah</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="ps-4 fw-bold">#ORD-2023-001</td>
+                    <td>Vas Bambu Handmade</td>
+                    <td>Budi Santoso</td>
+                    <td>12 Okt 2023</td>
+                    <td>Rp 185.000</td>
+                    <td><span class="badge bg-success">Selesai</span></td>
+                  </tr>
+                  <tr>
+                    <td class="ps-4 fw-bold">#ORD-2023-002</td>
+                    <td>Gelang Tenun Sumba</td>
+                    <td>Dewi Lestari</td>
+                    <td>11 Okt 2023</td>
+                    <td>Rp 75.000</td>
+                    <td><span class="badge bg-success">Selesai</span></td>
+                  </tr>
+                  <tr>
+                    <td class="ps-4 fw-bold">#ORD-2023-003</td>
+                    <td>Tas Rajut Bali</td>
+                    <td>Anton Wijaya</td>
+                    <td>10 Okt 2023</td>
+                    <td>Rp 250.000</td>
+                    <td>
+                      <span class="badge bg-warning text-dark">Proses</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ps-4 fw-bold">#ORD-2023-004</td>
+                    <td>Lukisan Batik Kontemporer</td>
+                    <td>Citra Dewi</td>
+                    <td>9 Okt 2023</td>
+                    <td>Rp 1.250.000</td>
+                    <td><span class="badge bg-info">Pengiriman</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <nav class="mt-4">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#">Previous</a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/data.js"></script>
+    <script src="../assets/js/admin.js"></script>
+  </body>
+</html>
